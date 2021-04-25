@@ -5,4 +5,10 @@
   <td>{{product.quantity}}</td>
   <td>{{product.selected}}</td>
   <td>{{product.available}}</td>
+  <td>
+    <button class="btn btn-sm btn-success" (click)="onSelect(product)">
+      <span *ngIf="product.selected">Unselect</span>
+      <span *ngIf="!product.selected">Selected</span>
+    </button>
+  </td>
 </tr>

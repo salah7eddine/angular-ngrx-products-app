@@ -5,7 +5,7 @@
       "name": "Computer",
       "price": 60000,
       "quantity": 12,
-      "selected": true,
+      "selected": false,
       "available": true
     },
     {
@@ -21,7 +21,7 @@
       "name": "Smartphone",
       "price": 2000,
       "quantity": 32,
-      "selected": false,
+      "selected": true,
       "available": true
     },
     {

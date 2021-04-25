@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { SelectProductAction } from 'src/app/ngrx/products.actions';
 import { Product } from '../../../model/product.model';
 @Component({
   selector: 'app-products-item',
@@ -7,7 +9,11 @@ import { Product } from '../../../model/product.model';
 })
 export class ProductsItemComponent implements OnInit {
   @Input() product: Product | null = null;
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
+
+  onSelect(product: Product) {
+    this.store.dispatch(new SelectProductAction(product));
+  }
 }

@@ -11,6 +11,9 @@ import {
   GetSelectedProductsActionSuccess,
   GetSelectedProductsActionError,
   ProductsActionsTypes,
+  ProductsActions,
+  SearchProductsActionSuccess,
+  SearchProductsActionError,
 } from './products.actions';
 
 @Injectable()
@@ -20,10 +23,10 @@ export class ProductsEffect {
     private effectActions: Actions
   ) {}
 
-  getAllProductsEffect: Observable<Action> = createEffect(() =>
+  getAllProductsEffect: Observable<ProductsActions> = createEffect(() =>
     this.effectActions.pipe(
       ofType(ProductsActionsTypes.GET_ALL_PRODUCTS),
-      mergeMap((action) => {
+      mergeMap((action: ProductsActions) => {
         return this.productService.getProducts().pipe(
           map((products) => new GetAllProductsActionSuccess(products)),
           catchError((err) => of(new GetAllProductsActionError(err.message)))
@@ -33,15 +36,28 @@ export class ProductsEffect {
   );
 
   // Get Selected Products
-  getSelectedProductsEffect: Observable<Action> = createEffect(() =>
+  getSelectedProductsEffect: Observable<ProductsActions> = createEffect(() =>
     this.effectActions.pipe(
       ofType(ProductsActionsTypes.GET_SELECTED_PRODUCTS),
-      mergeMap((action) => {
+      mergeMap((action: ProductsActions) => {
         return this.productService.getSelectedProducts().pipe(
           map((products) => new GetSelectedProductsActionSuccess(products)),
           catchError((err) =>
             of(new GetSelectedProductsActionError(err.message))
           )
+        );
+      })
+    )
+  );
+
+  // Search Products
+  searchProductsEffect: Observable<ProductsActions> = createEffect(() =>
+    this.effectActions.pipe(
+      ofType(ProductsActionsTypes.SEARCH_PRODUCTS),
+      mergeMap((action: ProductsActions) => {
+        return this.productService.searchProducts(action.payload).pipe(
+          map((products) => new SearchProductsActionSuccess(products)),
+          catchError((err) => of(new SearchProductsActionError(err.message)))
         );
       })
     )

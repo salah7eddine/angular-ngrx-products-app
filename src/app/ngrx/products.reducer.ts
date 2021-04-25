@@ -56,6 +56,21 @@ export function productsReducer(
         dataState: ProductsStateEnum.ERROR,
         errorMessage: (<ProductsActions>action).payload,
       };
+    // Search Products
+    case ProductsActionsTypes.SEARCH_PRODUCTS:
+      return { ...state, dataState: ProductsStateEnum.LOADING };
+    case ProductsActionsTypes.SEARCH_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        dataState: ProductsStateEnum.LOADED,
+        products: (<ProductsActions>action).payload,
+      };
+    case ProductsActionsTypes.SEARCH_PRODUCTS_ERROR:
+      return {
+        ...state,
+        dataState: ProductsStateEnum.ERROR,
+        errorMessage: (<ProductsActions>action).payload,
+      };
     default:
       return { ...state };
   }

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import {
   GetAllProductsAction,
   GetSelectedProductsAction,
+  SearchProductsAction,
 } from 'src/app/ngrx/products.actions';
 
 @Component({
@@ -21,5 +22,8 @@ export class ProductsNavBarComponent implements OnInit {
 
   onGetSelectedProducts() {
     this.store.dispatch(new GetSelectedProductsAction({}));
+  }
+  onSearch(dataForm: any) {
+    this.store.dispatch(new SearchProductsAction(dataForm.keyword));
   }
 }

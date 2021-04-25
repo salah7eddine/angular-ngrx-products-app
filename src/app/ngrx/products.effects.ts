@@ -16,6 +16,8 @@ import {
   SearchProductsActionError,
   SelectProductActionSuccess,
   SelectProductActionError,
+  DeleteProductActionSuccess,
+  DeleteProductActionError,
 } from './products.actions';
 
 @Injectable()
@@ -73,6 +75,19 @@ export class ProductsEffect {
         return this.productService.setSelected(action.payload).pipe(
           map((product) => new SelectProductActionSuccess(product)),
           catchError((err) => of(new SelectProductActionError(err.message)))
+        );
+      })
+    )
+  );
+
+  // Delete Product
+  deleteProductEffect: Observable<ProductsActions> = createEffect(() =>
+    this.effectActions.pipe(
+      ofType(ProductsActionsTypes.DELETE_PRODUCT),
+      mergeMap((action: ProductsActions) => {
+        return this.productService.delete(action.payload.id).pipe(
+          map(() => new DeleteProductActionSuccess(action.payload)),
+          catchError((err) => of(new DeleteProductActionError(err.message)))
         );
       })
     )

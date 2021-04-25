@@ -92,6 +92,26 @@ export function productsReducer(
         dataState: ProductsStateEnum.ERROR,
         errorMessage: (<ProductsActions>action).payload,
       };
+
+    // Delete Product
+    case ProductsActionsTypes.DELETE_PRODUCT:
+      return { ...state, dataState: ProductsStateEnum.LOADING };
+    case ProductsActionsTypes.DELETE_PRODUCT_SUCCESS:
+      let p = (<ProductsActions>action).payload;
+      let index = state.products.indexOf(p);
+      let productsList = [...state.products];
+      productsList.splice(index, 1);
+      return {
+        ...state,
+        dataState: ProductsStateEnum.LOADED,
+        products: productsList,
+      };
+    case ProductsActionsTypes.DELETE_PRODUCT_ERROR:
+      return {
+        ...state,
+        dataState: ProductsStateEnum.ERROR,
+        errorMessage: (<ProductsActions>action).payload,
+      };
     default:
       return { ...state };
   }

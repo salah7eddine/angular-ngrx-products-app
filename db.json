@@ -17,19 +17,11 @@
       "available": false
     },
     {
-      "id": 3,
-      "name": "Smartphone",
-      "price": 2000,
-      "quantity": 32,
-      "selected": true,
-      "available": true
-    },
-    {
       "id": 4,
       "name": "Tablet",
       "price": 9000,
       "quantity": 80,
-      "selected": false,
+      "selected": true,
       "available": true
     }
   ]

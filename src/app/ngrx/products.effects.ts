@@ -4,6 +4,7 @@ import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
 import { catchError, map, mergeMap } from 'rxjs/operators';
+import { Product } from '../model/product.model';
 import { ProductService } from '../services/product.service';
 import {
   GetAllProductsActionError,
@@ -18,10 +19,21 @@ import {
   SelectProductActionError,
   DeleteProductActionSuccess,
   DeleteProductActionError,
+  NewProductActionSuccess,
+  SaveProductActionSuccess,
+  SaveProductActionError,
 } from './products.actions';
 
 @Injectable()
 export class ProductsEffect {
+  product: Product = {
+    id: 0,
+    name: '',
+    price: 0,
+    quantity: 0,
+    selected: false,
+    available: false,
+  };
   constructor(
     private productService: ProductService,
     private effectActions: Actions
@@ -88,6 +100,29 @@ export class ProductsEffect {
         return this.productService.delete(action.payload.id).pipe(
           map(() => new DeleteProductActionSuccess(action.payload)),
           catchError((err) => of(new DeleteProductActionError(err.message)))
+        );
+      })
+    )
+  );
+
+  // New Product
+  newProductEffect: Observable<ProductsActions> = createEffect(() =>
+    this.effectActions.pipe(
+      ofType(ProductsActionsTypes.NEW_PRODUCT),
+      map((action: ProductsActions) => {
+        return new NewProductActionSuccess(this.product);
+      })
+    )
+  );
+
+  // Save Product
+  saveProductEffect: Observable<ProductsActions> = createEffect(() =>
+    this.effectActions.pipe(
+      ofType(ProductsActionsTypes.SAVE_PRODUCT),
+      mergeMap((action: ProductsActions) => {
+        return this.productService.save(action.payload).pipe(
+          map((product) => new SaveProductActionSuccess(product)),
+          catchError((err) => of(new SaveProductActionError(err.message)))
         );
       })
     )

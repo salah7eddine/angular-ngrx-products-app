@@ -13,6 +13,7 @@ import { productsReducer } from './ngrx/products.reducer';
 import { ProductsEffect } from './ngrx/products.effects';
 import { ProductsListComponent } from './components/products/products-list/products-list.component';
 import { ProductsItemComponent } from './components/products/products-item/products-item.component';
+import { NewProductComponent } from './components/products/new-product/new-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductsNavBarComponent,
     ProductsListComponent,
     ProductsItemComponent,
+    NewProductComponent,
   ],
   imports: [
     BrowserModule,

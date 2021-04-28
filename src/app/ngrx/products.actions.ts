@@ -26,6 +26,16 @@ export enum ProductsActionsTypes {
   DELETE_PRODUCT = '[Products] Delete product',
   DELETE_PRODUCT_SUCCESS = '[Products] Delete product Success',
   DELETE_PRODUCT_ERROR = '[Products] Delete product Error',
+
+  // New Product
+  NEW_PRODUCT = '[Products] New product',
+  NEW_PRODUCT_SUCCESS = '[Products] New product Success',
+  NEW_PRODUCT_ERROR = '[Products] New product Error',
+
+  // Save Product
+  SAVE_PRODUCT = '[Products] Save product',
+  SAVE_PRODUCT_SUCCESS = '[Products] Save product Success',
+  SAVE_PRODUCT_ERROR = '[Products] Save product Error',
 }
 
 // Get All Products Actions
@@ -124,6 +134,44 @@ export class DeleteProductActionError implements Action {
   constructor(public payload: String) {}
 }
 
+// New Product Actions
+export class NewProductAction implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.NEW_PRODUCT;
+
+  constructor(public payload: Product) {}
+}
+
+export class NewProductActionSuccess implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.NEW_PRODUCT_SUCCESS;
+
+  constructor(public payload: Product) {}
+}
+
+export class NewProductActionError implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.NEW_PRODUCT_ERROR;
+
+  constructor(public payload: String) {}
+}
+
+// Save Product Actions
+export class SaveProductAction implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.SAVE_PRODUCT;
+
+  constructor(public payload: Product) {}
+}
+
+export class SaveProductActionSuccess implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.SAVE_PRODUCT_SUCCESS;
+
+  constructor(public payload: Product) {}
+}
+
+export class SaveProductActionError implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.SAVE_PRODUCT_ERROR;
+
+  constructor(public payload: String) {}
+}
+
 export type ProductsActions =
   | GetAllProductsAction
   | GetAllProductsActionSuccess
@@ -139,4 +187,10 @@ export type ProductsActions =
   | SelectProductActionError
   | DeleteProductAction
   | DeleteProductActionSuccess
-  | DeleteProductActionError;
+  | DeleteProductActionError
+  | NewProductAction
+  | NewProductActionSuccess
+  | NewProductActionError
+  | SaveProductAction
+  | SaveProductActionSuccess
+  | SaveProductActionError;

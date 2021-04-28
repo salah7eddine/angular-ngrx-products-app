@@ -7,7 +7,8 @@
   <td><span [ngClass]="{'fa fa-check-circle text-success': product.selected}"></span></td>
   <td>{{product.available}}</td>
   <td>
-    <button class="btn btn-sm btn-success" (click)="onSelect(product)">
+    <button [ngClass]="{'btn btn-sm btn-success': !product.selected, 'btn btn-sm btn-danger': product.selected}"
+      (click)="onSelect(product)">
       <span *ngIf="product.selected">Unselect</span>
       <span *ngIf="!product.selected">Selected</span>
     </button>
@@ -15,6 +16,11 @@
   <td>
     <button class="btn btn-danger" (click)="onDelete(product)">
       <i class="fa fa-trash"></i>
+    </button>
+  </td>
+  <td>
+    <button class="btn btn-success" (click)="onEdit(product)">
+      <i class="fa fa-edit"></i>
     </button>
   </td>
 </tr>

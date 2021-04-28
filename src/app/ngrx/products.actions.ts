@@ -36,6 +36,16 @@ export enum ProductsActionsTypes {
   SAVE_PRODUCT = '[Products] Save product',
   SAVE_PRODUCT_SUCCESS = '[Products] Save product Success',
   SAVE_PRODUCT_ERROR = '[Products] Save product Error',
+
+  // Edit Product
+  EDIT_PRODUCT = '[Products] Edit product',
+  EDIT_PRODUCT_SUCCESS = '[Products] Edit product Success',
+  EDIT_PRODUCT_ERROR = '[Products] Edit product Error',
+
+  // Update Product
+  UPDATE_PRODUCT = '[Products] Update product',
+  UPDATE_PRODUCT_SUCCESS = '[Products] Update product Success',
+  UPDATE_PRODUCT_ERROR = '[Products] Update product Error',
 }
 
 // Get All Products Actions
@@ -172,6 +182,44 @@ export class SaveProductActionError implements Action {
   constructor(public payload: String) {}
 }
 
+// Edit Product Actions
+export class EditProductAction implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.EDIT_PRODUCT;
+
+  constructor(public payload: number) {}
+}
+
+export class EditProductActionSuccess implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.EDIT_PRODUCT_SUCCESS;
+
+  constructor(public payload: Product) {}
+}
+
+export class EditProductActionError implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.EDIT_PRODUCT_ERROR;
+
+  constructor(public payload: String) {}
+}
+
+// Update Product Actions
+export class UpdateProductAction implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.UPDATE_PRODUCT;
+
+  constructor(public payload: number) {}
+}
+
+export class UpdateProductActionSuccess implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.UPDATE_PRODUCT_SUCCESS;
+
+  constructor(public payload: Product) {}
+}
+
+export class UpdateProductActionError implements Action {
+  type: ProductsActionsTypes = ProductsActionsTypes.UPDATE_PRODUCT_ERROR;
+
+  constructor(public payload: String) {}
+}
+
 export type ProductsActions =
   | GetAllProductsAction
   | GetAllProductsActionSuccess
@@ -193,4 +241,7 @@ export type ProductsActions =
   | NewProductActionError
   | SaveProductAction
   | SaveProductActionSuccess
-  | SaveProductActionError;
+  | SaveProductActionError
+  | EditProductAction
+  | EditProductActionSuccess
+  | EditProductActionError;

@@ -2,41 +2,34 @@
   "products": [
     {
       "id": 1,
-      "name": "Computer",
+      "name": "Computer HP ",
       "price": 60000,
       "quantity": 12,
-      "selected": true,
+      "selected": false,
       "available": true
     },
     {
       "id": 2,
-      "name": "Printer",
+      "name": "Printer HP ",
       "price": 1200,
-      "quantity": 10,
+      "quantity": "50",
       "selected": true,
       "available": false
     },
     {
       "id": 3,
-      "name": "Tablet",
-      "price": 9000,
-      "quantity": 80,
+      "name": "Phone Samsung Note 10",
+      "price": "12000",
+      "quantity": "200",
       "selected": false,
-      "available": true
+      "available": null
     },
     {
-      "name": "Test Add",
-      "price": "100",
-      "quantity": "1000",
-      "selected": false,
-      "id": 4
-    },
-    {
-      "name": "Testt",
-      "price": "1000",
-      "quantity": "1020020",
+      "name": "Car",
+      "price": "1000000",
+      "quantity": "20",
       "selected": true,
-      "id": 6
+      "id": 4
     }
   ]
 }

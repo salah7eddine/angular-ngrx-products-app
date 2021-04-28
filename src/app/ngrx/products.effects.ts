@@ -22,6 +22,10 @@ import {
   NewProductActionSuccess,
   SaveProductActionSuccess,
   SaveProductActionError,
+  EditProductActionSuccess,
+  EditProductActionError,
+  UpdateProductActionSuccess,
+  UpdateProductActionError,
 } from './products.actions';
 
 @Injectable()
@@ -123,6 +127,32 @@ export class ProductsEffect {
         return this.productService.save(action.payload).pipe(
           map((product) => new SaveProductActionSuccess(product)),
           catchError((err) => of(new SaveProductActionError(err.message)))
+        );
+      })
+    )
+  );
+
+  // Edit Product
+  editProductEffect: Observable<ProductsActions> = createEffect(() =>
+    this.effectActions.pipe(
+      ofType(ProductsActionsTypes.EDIT_PRODUCT),
+      mergeMap((action: ProductsActions) => {
+        return this.productService.getProductById(action.payload).pipe(
+          map((product) => new EditProductActionSuccess(product)),
+          catchError((err) => of(new EditProductActionError(err.message)))
+        );
+      })
+    )
+  );
+
+  // Update Product
+  updateProductEffect: Observable<ProductsActions> = createEffect(() =>
+    this.effectActions.pipe(
+      ofType(ProductsActionsTypes.UPDATE_PRODUCT),
+      mergeMap((action: ProductsActions) => {
+        return this.productService.update(action.payload).pipe(
+          map((product) => new UpdateProductActionSuccess(product)),
+          catchError((err) => of(new UpdateProductActionError(err.message)))
         );
       })
     )
